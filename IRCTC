@@ -1,0 +1,59 @@
+class irctc:
+    def details(self,input1,lst):
+        if input1 == "create":
+            print("Enter the requested location you want to insert")
+            loc = input()
+            if loc in lst:
+                print("The place is already available in the IRCTC platform")
+            else:
+                lst.append(loc)
+                print("The location is successfully inserted")
+        elif input1 == "read":
+            print("The locations available in the IRCTC platform are:")
+            print(lst)
+        elif input1 == "update":
+            flag = 1
+            count = 0
+            print("Enter the location to be updated:")
+            val = input()
+            print("Enter the new location to added:")
+            new = input()
+            for i in lst:
+                if i!=val:
+                    flag = 0
+                elif i==val:
+                    lst[count] = new
+                    print("The location is successfully updated")
+                    flag = 1
+                    break
+                count+=1
+            if flag == 0:
+                print("Sorry,The location to be updated is not available")
+        elif input1 == "delete":
+            flag = 1
+            print("Enter the location to deleted from the irctc platform:")
+            val = input()
+            for i in lst:
+                if i!=val:
+                    flag = 0
+                elif i==val:
+                    lst.remove(val)
+                    flag = 1
+                    print("The location is successfully deleted")
+                    break
+            if flag == 0:
+                print("Sorry,The location to be deleted is not available")
+def main():
+    lst = []
+    ob = irctc()
+    print("The operations to be performed are:")
+    print("1.Create","\n2.Read","\n3.Update","\n4.Delete","\n5.Exit")
+    while(True):
+        print("Enter the opeartion:")
+        input1 = input()
+        if input1.lower()=="exit":
+            quit()
+        ob.details(input1,lst)
+    
+if __name__ == "__main__":
+    main()
